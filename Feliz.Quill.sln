@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Docs", "src\Docs\Docs.fsproj", "{CAC05C17-9AED-427D-91BA-6CA72BC79CDC}"
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Feliz.Quill", "src\Feliz.Quill\Feliz.Quill.fsproj", "{2CF741FB-898D-49F0-831F-0722C62BC79B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CAC05C17-9AED-427D-91BA-6CA72BC79CDC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CAC05C17-9AED-427D-91BA-6CA72BC79CDC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CAC05C17-9AED-427D-91BA-6CA72BC79CDC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CAC05C17-9AED-427D-91BA-6CA72BC79CDC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2CF741FB-898D-49F0-831F-0722C62BC79B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2CF741FB-898D-49F0-831F-0722C62BC79B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2CF741FB-898D-49F0-831F-0722C62BC79B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2CF741FB-898D-49F0-831F-0722C62BC79B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

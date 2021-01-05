@@ -1,0 +1,30 @@
+{
+  "version": 1,
+  "isRoot": true,
+  "tools": {
+    "paket": {
+      "version": "5.257.0",
+      "commands": [
+        "paket"
+      ]
+    },
+    "fake-cli": {
+      "version": "5.20.4-alpha.1642",
+      "commands": [
+        "fake"
+      ]
+    },
+    "femto": {
+      "version": "0.8.3",
+      "commands": [
+        "femto"
+      ]
+    },
+    "fable": {
+      "version": "3.0.5",
+      "commands": [
+        "fable"
+      ]
+    }
+  }
+}

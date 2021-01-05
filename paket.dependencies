@@ -1,0 +1,32 @@
+version 5.257.0
+
+source https://api.nuget.org/v3/index.json
+storage: none
+framework: netstandard2.0
+
+nuget FSharp.Core
+nuget Feliz
+nuget Fable.Core = 3.1.6
+
+group Build
+    source https://api.nuget.org/v3/index.json
+    storage: none
+    framework: netstandard2.0
+
+    nuget FSharp.Core
+    nuget Fake.DotNet.Cli
+    nuget Fake.Core.Target
+    nuget Fake.IO.FileSystem
+    nuget Fake.Core.ReleaseNotes
+
+group Docs
+    source https://api.nuget.org/v3/index.json
+    storage: none
+    framework: net5.0
+
+    nuget FSharp.Core
+    nuget Fable.Core
+    nuget Feliz
+    nuget Feliz.Router
+    nuget Feliz.UseElmish
+    nuget Feliz.Bulma

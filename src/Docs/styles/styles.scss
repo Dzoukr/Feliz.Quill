@@ -1,0 +1,14 @@
+@charset "utf-8";
+
+@import '~@fortawesome/fontawesome-free/css/all.min.css';
+
+// Bulma
+@import "~bulma";
+
+@import "~react-quill/dist/quill.snow.css";
+@import "~react-quill/dist/quill.bubble.css";
+@import "~react-quill/dist/quill.core.css";
+
+.ql-editor {
+    min-width: 100em;
+}

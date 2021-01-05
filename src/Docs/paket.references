@@ -1,0 +1,8 @@
+group Docs
+    FSharp.Core
+    Fable.Core
+    Fable.React
+    Feliz
+    Feliz.Router
+    Feliz.UseElmish
+    Feliz.Bulma
