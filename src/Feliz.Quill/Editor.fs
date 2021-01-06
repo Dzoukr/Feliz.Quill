@@ -133,6 +133,7 @@ module Editor =
             "default"
             "react-quill"
             {|
+                key = System.Guid.NewGuid()
                 onChange = p.onTextChanged
                 placeholder = p.placeholder
                 theme = p.theme |> Theme.value

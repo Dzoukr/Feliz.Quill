@@ -1,5 +1,7 @@
 ﻿namespace Feliz.Quill
 
+open System
+open Feliz
 open Fable.Core
 open Fable.Core.JsInterop
 
@@ -20,4 +22,3 @@ type Quill =
             props
             |> Props.setDefault ("theme", Theme.Snow)
         Editor.Editor (unbox<Editor.Props> (createObj !!safeProps))
-
