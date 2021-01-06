@@ -18,7 +18,7 @@ type Quill =
     static member inline editor (props: IQuillEditorProperty list) =
         let safeProps =
             props
-//            |> Props.setDefault ("displayMode", DisplayMode.Default)
+            //|> Props.setDefault ("modules", [ QuillModule.blotFormatter ])
             |> Props.setDefault ("theme", Theme.Snow)
         Editor.Editor (unbox<Editor.Props> (createObj !!safeProps))
 
