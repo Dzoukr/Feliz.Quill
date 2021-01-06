@@ -21,6 +21,10 @@ let menuPart (model:Model) =
         Bulma.menuLabel "General"
         Bulma.menuList [
             item "Overview" Index
+            item "Installation" Installation
+            item "Quickstart" QuickStart
+            item "Toolbars" Toolbars
+            item "Themes" Themes
         ]
     ]
 
@@ -28,6 +32,10 @@ let menuPart (model:Model) =
 let contentPart model =
     match model.CurrentPage with
     | Index -> Pages.Index.view
+    | Installation -> Pages.Installation.view
+    | QuickStart -> Pages.QuickStart.view
+    | Toolbars -> Pages.Toolbars.view
+    | Themes -> Pages.Themes.view
 
 
 [<ReactComponent>]
@@ -36,15 +44,12 @@ let AppView () =
     let render =
         Bulma.container [
             Bulma.section [
-                Bulma.tile [
-                    tile.isAncestor
-                    prop.children [
-                        Bulma.tile [
-                            tile.is2
-                            prop.children (menuPart model)
-                        ]
-                        Bulma.tile (contentPart model)
+                Bulma.columns [
+                    Bulma.column [
+                        column.is2
+                        prop.children (menuPart model)
                     ]
+                    Bulma.column (contentPart model)
                 ]
             ]
         ]

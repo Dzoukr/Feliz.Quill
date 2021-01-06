@@ -1,10 +1,26 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
+        <PackageId>Feliz.Quill</PackageId>
+        <Description>Quill rich editor extension for Feliz</Description>
+        <RepositoryUrl>https://github.com/Dzoukr/Feliz.Quill</RepositoryUrl>
+        <PackageLicenseUrl>https://github.com/Dzoukr/Feliz.Quill/blob/master/LICENSE</PackageLicenseUrl>
+        <PackageIconUrl></PackageIconUrl>
+        <PackageTags>fsharp;fable;quill;feliz;react;html;wysiwyg</PackageTags>
+        <Authors>Roman Provazník</Authors>
+        <Version>1.0.0</Version>
         <TargetFramework>netstandard2.0</TargetFramework>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+        <PackageReleaseNotes>Initial release</PackageReleaseNotes>
     </PropertyGroup>
     <ItemGroup>
         <Compile Include="Editor.fs" />
         <Compile Include="Quill.fs" />
     </ItemGroup>
+    <PropertyGroup>
+        <NpmDependencies>
+            <NpmPackage Name="react-quill" Version="&gt;= 2.0.0-beta.2 &lt; 3.0.0" ResolutionStrategy="Max" />
+            <NpmPackage Name="quill-blot-formatter" Version="&gt;= 1.0.5 &lt; 2.0.0" ResolutionStrategy="Max" />
+        </NpmDependencies>
+    </PropertyGroup>
     <Import Project="..\..\.paket\Paket.Restore.targets" />
 </Project>

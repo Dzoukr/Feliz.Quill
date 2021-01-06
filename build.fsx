@@ -66,8 +66,8 @@ let publishNuget proj =
         |> Path.GetFullPath
     Tools.dotnet (sprintf "nuget push %s -s nuget.org -k %s" nupkg nugetKey) proj
 
-Target.create "Pack" (fun _ -> "src" </> "Feliz.TextEditor" |> createNuget)
-Target.create "Publish" (fun _ -> "src" </> "Feliz.TextEditor" |> publishNuget)
+Target.create "Pack" (fun _ -> "src" </> "Feliz.Quill" |> createNuget)
+Target.create "Publish" (fun _ -> "src" </> "Feliz.Quill" |> publishNuget)
 
 Target.create "InstallDocs" (fun _ ->
     printfn "Node version:"

@@ -6,7 +6,12 @@
     <ItemGroup>
         <Compile Include="Router.fs" />
         <Compile Include="State.fs" />
+        <Compile Include="Pages\Shared.fs" />
         <Compile Include="Pages\Index.fs" />
+        <Compile Include="Pages\Installation.fs" />
+        <Compile Include="Pages\QuickStart.fs" />
+        <Compile Include="Pages\Toolbars.fs" />
+        <Compile Include="Pages\Themes.fs" />
         <Compile Include="View.fs" />
         <Compile Include="App.fs" />
     </ItemGroup>

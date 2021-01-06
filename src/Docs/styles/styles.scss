@@ -5,10 +5,19 @@
 // Bulma
 @import "~bulma";
 
+@import "github-gist.scss";
+
 @import "~react-quill/dist/quill.snow.css";
 @import "~react-quill/dist/quill.bubble.css";
 @import "~react-quill/dist/quill.core.css";
 
-.ql-editor {
-    min-width: 100em;
+
+.ql-reset {
+    .ql-container {
+        font-size: inherit !important;
+        font-family: inherit !important;
+    }
+    .ql-editor {
+        padding: inherit !important;
+    }
 }
