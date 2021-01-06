@@ -116,16 +116,25 @@ module Editor =
         abstract toolbar : Toolbar option
 
     type Quill =
-        abstract register : string -> obj -> bool -> unit
+        abstract register : string * obj * bool -> unit
+        abstract register : obj * bool -> unit
         abstract import : string -> obj
 
     [<ImportDefault(from="quill")>]
     let quill: Quill = jsNative
 
     [<ImportDefault(from="quill-blot-formatter")>]
-    let private blotFormatterJs: obj = jsNative
+    let blotFormatterJs: obj = jsNative
 
-    quill.register "modules/blotFormatter" blotFormatterJs true
+    [<Import("ImageBlot","./CustomBlots.js")>]
+    let imageBlot: obj = jsNative
+
+    [<Import("VideoBlot","./CustomBlots.js")>]
+    let videoBlot: obj = jsNative
+
+    quill.register("modules/blotFormatter", blotFormatterJs, true)
+    quill.register(imageBlot, true)
+    quill.register(videoBlot, true)
 
     [<ReactComponent>]
     let Editor (p:Props) =

@@ -10,7 +10,7 @@ let editorContent = """
     <p>Text editation for Feliz projects is now <strong>easier</strong> than ever!</p>
     <p>If you don't trust me, <i>highlight this text</i> and you'll see yourself.</p>
     <p>Of course it's not only about text. You can embed video as well!</p>
-    <p><iframe class="ql-video" frameborder="0" allowfullscreen="true" src="https://www.youtube.com/embed/FssULNGSZIA?showinfo=0" data-blot-formatter-unclickable-bound="true" style="cursor: nwse-resize;" width="656" height="328"></iframe></p>
+    <p><iframe class="ql-video" frameborder="0" allowfullscreen="true" src="https://www.youtube.com/embed/FssULNGSZIA?showinfo=0" height="328" width="656" data-align="center" style="display: block; margin: auto;"></iframe></p>
 """
 
 let fullContent = """
