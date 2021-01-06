@@ -1,7 +1,5 @@
 namespace Feliz.Quill
 
-open System
-open Browser.Types
 open Fable.Core
 open Fable.Core.JsInterop
 open Fable.React
@@ -117,9 +115,21 @@ module Editor =
         abstract defaultValue : string option
         abstract toolbar : Toolbar option
 
+    type QuillResize = obj
+    type Quill =
+        abstract register : string -> QuillResize -> unit
+        abstract import : string -> unit
+
+    [<ImportDefault(from="quill")>]
+    let quill: Quill = jsNative
+
+    [<ImportDefault(from="quill-image-resize-module-react")>]
+    let imageResize: obj = jsNative
+
+
     [<ReactComponent>]
     let Editor (p:Props) =
-
+        quill.register "modules/imageResize" imageResize
         ofImport
             "default"
             "react-quill"
@@ -128,7 +138,11 @@ module Editor =
                 placeholder = p.placeholder
                 theme = p.theme |> Theme.value
                 defaultValue = p.defaultValue
-                modules = {| toolbar = p.toolbar |> Option.defaultValue Toolbar.all |> Toolbar.toJsObj |}
+                modules =
+                    {|
+                       toolbar = p.toolbar |> Option.defaultValue Toolbar.all |> Toolbar.toJsObj
+                       imageResize = {| parchment = quill.import("parchment") |}
+                    |}
             |}
             []
 
