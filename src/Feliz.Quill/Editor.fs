@@ -106,23 +106,6 @@ module private Theme =
         | Snow -> "snow"
         | Bubble -> "bubble"
 
-type QuillModule = {
-    RegisterPath : string
-    RegisterInstance : obj
-    Props : (string * obj) option
-}
-
-
-module QuillModule =
-    [<ImportDefault(from="quill-blot-formatter")>]
-    let private blotFormatterJs: obj = jsNative
-
-    let blotFormatter = {
-        RegisterPath = "blotFormatter"
-        RegisterInstance = blotFormatterJs
-        Props = Some ("blotFormatter", box {| |})
-    }
-
 [<RequireQualifiedAccess; System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)>]
 module Editor =
     type Props =
@@ -131,9 +114,7 @@ module Editor =
         abstract placeholder : string option
         abstract defaultValue : string option
         abstract toolbar : Toolbar option
-        abstract modules : QuillModule list
 
-    type QuillResize = obj
     type Quill =
         abstract register : string -> obj -> bool -> unit
         abstract import : string -> obj
@@ -141,9 +122,13 @@ module Editor =
     [<ImportDefault(from="quill")>]
     let quill: Quill = jsNative
 
+    [<ImportDefault(from="quill-blot-formatter")>]
+    let private blotFormatterJs: obj = jsNative
+
+    quill.register "modules/blotFormatter" blotFormatterJs true
+
     [<ReactComponent>]
     let Editor (p:Props) =
-        for m in p.modules do quill.register $"modules/{m.RegisterPath}" m.RegisterInstance true
         ofImport
             "default"
             "react-quill"
@@ -155,10 +140,7 @@ module Editor =
                 modules =
                     createObj [
                         "toolbar" ==> (p.toolbar |> Option.defaultValue Toolbar.all |> Toolbar.toJsObj)
-                        for m in p.modules do
-                            match m.Props with
-                            | Some (k,v) -> k ==> v
-                            | None -> ()
+                        "blotFormatter" ==> {| |}
                     ]
             |}
             []
@@ -172,5 +154,3 @@ type editor =
     static member inline placeholder (text:string) : IQuillEditorProperty = unbox ("placeholder", text)
     static member inline defaultValue (text:string) : IQuillEditorProperty = unbox ("defaultValue", text)
     static member inline toolbar (toolbar:Toolbar) : IQuillEditorProperty = unbox ("toolbar", toolbar)
-    static member inline modules (modules:QuillModule list) : IQuillEditorProperty = unbox ("modules", modules)
-
