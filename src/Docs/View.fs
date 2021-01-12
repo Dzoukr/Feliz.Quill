@@ -38,20 +38,49 @@ let contentPart model =
     | Themes -> Pages.Themes.view
 
 
+let private faIcon (cn:string) = Html.i [ prop.className cn ]
+let private faIconLink (cn:string) (href:string) =
+    Html.a [
+        prop.href href
+        prop.children [ faIcon cn ]
+    ]
+
+
+let footer =
+    Bulma.footer [
+        Bulma.container [
+            Html.div [
+                prop.className "icons"
+                prop.children [
+                    Html.a [
+                        prop.href "https://github.com/Dzoukr/Feliz.Quill"
+                        prop.children [
+                            faIcon "fab fa-github"
+                            Html.span "Source code on GitHub (MIT license)"
+                        ]
+                    ]
+                ]
+            ]
+        ]
+    ]
+
 [<ReactComponent>]
 let AppView () =
     let model, dispatch = React.useElmish(init, update, [| |])
     let render =
-        Bulma.container [
-            Bulma.section [
-                Bulma.columns [
-                    Bulma.column [
-                        column.is2
-                        prop.children (menuPart model)
+        React.fragment [
+            Bulma.container [
+                Bulma.section [
+                    Bulma.columns [
+                        Bulma.column [
+                            column.is2
+                            prop.children (menuPart model)
+                        ]
+                        Bulma.column (contentPart model)
                     ]
-                    Bulma.column (contentPart model)
                 ]
             ]
+            footer
         ]
     React.router [
         router.onUrlChanged (parseUrl >> UrlChanged >> dispatch)

@@ -24,11 +24,11 @@ let view =
             Bulma.content [
                 code """open Feliz.Quill
 
-    Quill.editor [
-        editor.onTextChanged (fun x -> Fable.Core.JS.console.log(x))
-        editor.toolbar Toolbar.all
-        editor.placeholder "Start some awesome story..."
-    ]"""
+Quill.editor [
+    editor.onTextChanged (fun x -> Fable.Core.JS.console.log(x))
+    editor.toolbar Toolbar.all
+    editor.placeholder "Start some awesome story..."
+]"""
             ]
             Bulma.content [
                 Html.p "Proceed to next documentation section to learn more about Toolbars"

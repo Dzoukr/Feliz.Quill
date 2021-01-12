@@ -32,9 +32,9 @@ let view =
             Bulma.content [ Html.p "To select which one to use you can simply set the theme property." ]
             Bulma.content [
                 code """Quill.editor [
-        editor.theme Theme.Bubble
-        editor.placeholder "Start some awesome story..."
-    ]"""
+    editor.theme Theme.Bubble
+    editor.placeholder "Start some awesome story..."
+]"""
             ]
 
         ]
