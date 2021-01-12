@@ -50,7 +50,7 @@ let view =
 
                 Bulma.title.h5 "Importing handler from .js to F#"
                 code """[<Import("myHandler","./MyHandler.js")>]
-let private myFSharpHandler: HandlerFunction = jsNative
+let myFSharpHandler: HandlerFunction = jsNative
 """
                 Bulma.title.h5 "Registering handler"
                 code """Quill.editor [
