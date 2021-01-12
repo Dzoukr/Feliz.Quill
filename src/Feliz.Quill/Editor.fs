@@ -106,6 +106,25 @@ module private Theme =
         | Snow -> "snow"
         | Bubble -> "bubble"
 
+type HandlerFunction = obj -> unit
+
+type Handler = {
+    Name : string
+    Function : HandlerFunction
+}
+
+[<RequireQualifiedAccess>]
+module Handler =
+    [<Import("imageFromUrl","./CustomHandlers.js")>]
+    let private imageUrlHandlerFunction: HandlerFunction = jsNative
+
+    let custom name func = { Name = name; Function = func }
+
+    let imageFromUrl = {
+        Name = "image"
+        Function = imageUrlHandlerFunction
+    }
+
 [<RequireQualifiedAccess; System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)>]
 module Editor =
     type Props =
@@ -114,16 +133,16 @@ module Editor =
         abstract placeholder : string option
         abstract defaultValue : string option
         abstract toolbar : Toolbar option
+        abstract handlers : Handler list option
 
     type Quill =
         abstract register : string * obj * bool -> unit
         abstract register : obj * bool -> unit
-        abstract import : string -> obj
 
-    [<ImportDefault(from="quill")>]
+    [<ImportDefault("quill")>]
     let quill: Quill = jsNative
 
-    [<ImportDefault(from="quill-blot-formatter")>]
+    [<ImportDefault("quill-blot-formatter")>]
     let blotFormatterJs: obj = jsNative
 
     [<Import("ImageBlot","./CustomBlots.js")>]
@@ -138,6 +157,17 @@ module Editor =
 
     [<ReactComponent>]
     let Editor (p:Props) =
+
+        let handlers =
+            p.handlers
+            |> Option.bind (fun x -> if x.Length = 0 then None else Some x)
+            |> Option.map (fun x ->
+                createObj [
+                    for h in x do
+                    h.Name ==> h.Function
+                ]
+            )
+
         ofImport
             "default"
             "react-quill"
@@ -148,7 +178,15 @@ module Editor =
                 defaultValue = p.defaultValue
                 modules =
                     createObj [
-                        "toolbar" ==> (p.toolbar |> Option.defaultValue Toolbar.all |> Toolbar.toJsObj)
+                        "toolbar" ==>
+                            createObj [
+                                "container" ==> (p.toolbar |> Option.defaultValue Toolbar.all |> Toolbar.toJsObj)
+                                match handlers with
+                                | Some h ->
+                                    "handlers" ==> h
+                                | None -> ()
+                            ]
+
                         "blotFormatter" ==> {| |}
                     ]
             |}
@@ -163,3 +201,4 @@ type editor =
     static member inline placeholder (text:string) : IQuillEditorProperty = unbox ("placeholder", text)
     static member inline defaultValue (text:string) : IQuillEditorProperty = unbox ("defaultValue", text)
     static member inline toolbar (toolbar:Toolbar) : IQuillEditorProperty = unbox ("toolbar", toolbar)
+    static member inline handlers (handlers:Handler list) : IQuillEditorProperty = unbox ("handlers", handlers)

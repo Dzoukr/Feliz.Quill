@@ -7,10 +7,10 @@
         <PackageIconUrl></PackageIconUrl>
         <PackageTags>fsharp;fable;quill;feliz;react;html;wysiwyg</PackageTags>
         <Authors>Roman Provazník</Authors>
-        <Version>1.1.1</Version>
+        <Version>1.2.0</Version>
         <TargetFramework>netstandard2.0</TargetFramework>
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
-        <PackageReleaseNotes>Reverting the changes made for key handling #3</PackageReleaseNotes>
+        <PackageReleaseNotes>Introducing support for handlers</PackageReleaseNotes>
     </PropertyGroup>
     <ItemGroup>
         <Compile Include="Editor.fs" />

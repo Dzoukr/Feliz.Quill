@@ -25,6 +25,7 @@ let menuPart (model:Model) =
             item "Quickstart" QuickStart
             item "Toolbars" Toolbars
             item "Themes" Themes
+            item "Handlers" Handlers
         ]
     ]
 
@@ -36,6 +37,7 @@ let contentPart model =
     | QuickStart -> Pages.QuickStart.view
     | Toolbars -> Pages.Toolbars.view
     | Themes -> Pages.Themes.view
+    | Handlers -> Pages.Handlers.view
 
 
 let private faIcon (cn:string) = Html.i [ prop.className cn ]

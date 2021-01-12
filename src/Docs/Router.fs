@@ -8,6 +8,7 @@ type Page =
     | QuickStart
     | Toolbars
     | Themes
+    | Handlers
 
 let defaultPage = Index
 
@@ -16,6 +17,7 @@ let parseUrl = function
     | [ "installation" ] -> Installation
     | [ "toolbars" ] -> Toolbars
     | [ "themes" ] -> Themes
+    | [ "handlers" ] -> Handlers
     | _ -> Index
 
 let getHref = function
@@ -24,3 +26,4 @@ let getHref = function
     | QuickStart -> Router.format("quickstart")
     | Toolbars -> Router.format("toolbars")
     | Themes -> Router.format("themes")
+    | Handlers -> Router.format("handlers")

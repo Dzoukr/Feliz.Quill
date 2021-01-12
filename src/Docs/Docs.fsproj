@@ -12,11 +12,15 @@
         <Compile Include="Pages\QuickStart.fs" />
         <Compile Include="Pages\Toolbars.fs" />
         <Compile Include="Pages\Themes.fs" />
+        <Compile Include="Pages\Handlers.fs" />
         <Compile Include="View.fs" />
         <Compile Include="App.fs" />
     </ItemGroup>
     <ItemGroup>
         <ProjectReference Include="..\..\src\Feliz.Quill\Feliz.Quill.fsproj" />
+    </ItemGroup>
+    <ItemGroup>
+      <Content Include="Pages\MyHandler.js" />
     </ItemGroup>
     <Import Project="..\..\.paket\Paket.Restore.targets" />
 </Project>
