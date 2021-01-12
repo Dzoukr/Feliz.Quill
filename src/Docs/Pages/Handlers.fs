@@ -28,7 +28,7 @@ let view =
                 ]
             ]
 
-            Bulma.content [ Html.p "To select which one to use you can simply set the theme property." ]
+            Bulma.content [ Html.p "To register this existing handler just set correct property." ]
             Bulma.content [
                 code """Quill.editor [
     editor.toolbar Toolbar.medium
