@@ -1,5 +1,6 @@
 namespace Feliz.Quill
 
+open Browser.Types
 open Fable.Core
 open Fable.Core.JsInterop
 open Fable.React
@@ -157,6 +158,14 @@ module Editor =
 
     [<ReactComponent>]
     let Editor (p:Props) =
+
+        // Fix bug with adding more and more blot formatter proxy images
+        // I tried React.useEffect but it removed also valid images  ¯\_(ツ)_/¯
+        let nodes = Browser.Dom.window.document.querySelectorAll(".blot-formatter__proxy-image")
+        if nodes.length > 0 then
+            for i in [0..nodes.length - 1] do
+                let el = nodes.Item i
+                el.remove()
 
         let handlers =
             p.handlers
