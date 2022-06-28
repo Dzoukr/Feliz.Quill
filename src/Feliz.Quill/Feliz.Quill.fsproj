@@ -7,10 +7,10 @@
         <PackageIconUrl></PackageIconUrl>
         <PackageTags>fsharp;fable;quill;feliz;react;html;wysiwyg</PackageTags>
         <Authors>Roman Provazník</Authors>
-        <Version>1.2.1</Version>
+        <Version>1.3.1</Version>
         <TargetFramework>netstandard2.0</TargetFramework>
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
-        <PackageReleaseNotes>Fixing infinite append of blot-formatter image when used on routed page</PackageReleaseNotes>
+        <PackageReleaseNotes>Adding support for select pastable formats</PackageReleaseNotes>
     </PropertyGroup>
     <ItemGroup>
         <Compile Include="Editor.fs" />

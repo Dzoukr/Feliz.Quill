@@ -135,6 +135,7 @@ module Editor =
         abstract defaultValue : string option
         abstract toolbar : Toolbar option
         abstract handlers : Handler list option
+        abstract formats : string []
 
     type Quill =
         abstract register : string * obj * bool -> unit
@@ -185,6 +186,7 @@ module Editor =
                 placeholder = p.placeholder
                 theme = p.theme |> Theme.value
                 defaultValue = p.defaultValue
+                formats = p.formats
                 modules =
                     createObj [
                         "toolbar" ==>
@@ -211,3 +213,4 @@ type editor =
     static member inline defaultValue (text:string) : IQuillEditorProperty = unbox ("defaultValue", text)
     static member inline toolbar (toolbar:Toolbar) : IQuillEditorProperty = unbox ("toolbar", toolbar)
     static member inline handlers (handlers:Handler list) : IQuillEditorProperty = unbox ("handlers", handlers)
+    static member inline formats (formats:string list) : IQuillEditorProperty = unbox ("formats", formats |> Array.ofList)
