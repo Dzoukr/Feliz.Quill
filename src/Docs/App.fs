@@ -1,6 +1,5 @@
 module Docs.App
 
 open Feliz
-open Browser.Dom
 
-ReactDOM.render(View.AppView, document.getElementById("safer-app"))
+ReactDOM.createRoot(Browser.Dom.document.getElementById("safer-app")).render(View.AppView())

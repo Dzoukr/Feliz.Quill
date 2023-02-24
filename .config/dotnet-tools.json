@@ -3,25 +3,19 @@
   "isRoot": true,
   "tools": {
     "paket": {
-      "version": "5.257.0",
+      "version": "7.1.5",
       "commands": [
         "paket"
       ]
     },
-    "fake-cli": {
-      "version": "5.20.4-alpha.1642",
-      "commands": [
-        "fake"
-      ]
-    },
     "femto": {
-      "version": "0.8.3",
+      "version": "0.12.0",
       "commands": [
         "femto"
       ]
     },
     "fable": {
-      "version": "3.0.5",
+      "version": "4.0.0-theta-018",
       "commands": [
         "fable"
       ]

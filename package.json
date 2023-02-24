@@ -1,0 +1,27 @@
+{
+    "private": true,
+    "scripts": {
+        "prestart": "dotnet tool restore",
+        "start": "dotnet fable watch ./src/Docs --outDir ./src/Docs/.fable-build --run vite",
+        "prebuild": "dotnet tool restore",
+        "build": "dotnet fable ./src/Docs --outDir ./src/Docs/.fable-build --run vite build"
+    },
+    "devDependencies": {
+        "@vitejs/plugin-react": "^3.1.0",
+        "autoprefixer": "^10.4.13",
+        "postcss": "^8.4.20",
+        "vite": "^4.0.4"
+    },
+    "dependencies": {
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0",
+        "react-highlight": "^0.15.0",
+        "highlight.js": "^11.7.0",
+        "bulma": "^0.9.4",
+        "use-sync-external-store": "^1.2.0",
+        "@fortawesome/fontawesome-free": "^6.3.0",
+        "react-quill": "^2.0.0",
+        "quill-blot-formatter": "^1.0.5"
+    }
+
+}

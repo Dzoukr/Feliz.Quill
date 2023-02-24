@@ -157,6 +157,7 @@ module Editor =
     quill.register(imageBlot, true)
     quill.register(videoBlot, true)
 
+
     [<ReactComponent>]
     let Editor (p:Props) =
 
@@ -177,7 +178,6 @@ module Editor =
                     h.Name ==> h.Function
                 ]
             )
-
         ofImport
             "default"
             "react-quill"
