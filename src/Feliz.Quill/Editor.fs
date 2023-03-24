@@ -5,6 +5,7 @@ open Fable.Core
 open Fable.Core.JsInterop
 open Fable.React
 open Feliz
+open Feliz.Quill.JsInterop
 
 type Theme = Snow | Bubble
 
@@ -128,14 +129,14 @@ module Handler =
 
 [<RequireQualifiedAccess; System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)>]
 module Editor =
-    type Props =
-        abstract onTextChanged : (string -> unit) option
-        abstract theme : Theme
-        abstract placeholder : string option
-        abstract defaultValue : string option
-        abstract toolbar : Toolbar option
-        abstract handlers : Handler list option
-        abstract formats : string []
+    // type Props =
+    //     abstract onTextChanged : (string -> unit) option
+    //     abstract theme : Theme
+    //     abstract placeholder : string option
+    //     abstract defaultValue : string option
+    //     abstract toolbar : Toolbar option
+    //     abstract handlers : Handler list option
+    //     abstract formats : string []
 
     type Quill =
         abstract register : string * obj * bool -> unit
@@ -170,7 +171,8 @@ module Editor =
                 el.remove()
 
         let handlers =
-            p.handlers
+            p
+            |> Props.get<Handler list> "handlers"
             |> Option.bind (fun x -> if x.Length = 0 then None else Some x)
             |> Option.map (fun x ->
                 createObj [
@@ -178,29 +180,38 @@ module Editor =
                     h.Name ==> h.Function
                 ]
             )
+
+        let modules =
+             createObj [
+                 "toolbar" ==>
+                     createObj [
+                         "container" ==> (p |> Props.get "toolbar" |> Option.defaultValue Toolbar.all |> Toolbar.toJsObj)
+                         match handlers with
+                         | Some h ->
+                             "handlers" ==> h
+                         | None -> ()
+                     ]
+
+                 "blotFormatter" ==> {| |}
+             ]
+
+        let conf =
+            [
+                p |> Props.get "onTextChanged" |> Option.map (fun x -> "onChange" ==> x)
+                p |> Props.get "placeholder" |> Option.map (fun x -> "placeholder" ==> x)
+                p |> Props.get "theme" |> Option.map (fun x -> "theme" ==> Theme.value x)
+                p |> Props.get "defaultValue" |> Option.map (fun x -> "defaultValue" ==> x)
+                p |> Props.get "value" |> Option.map (fun x -> "value" ==> x)
+                p |> Props.get "formats" |> Option.map (fun x -> "formats" ==> x)
+            ]
+            |> List.choose id
+            |> (fun l -> l @ ["modules" ==> modules])
+            |> createObj
+
         ofImport
             "default"
             "react-quill"
-            {|
-                onChange = p.onTextChanged
-                placeholder = p.placeholder
-                theme = p.theme |> Theme.value
-                defaultValue = p.defaultValue
-                formats = p.formats
-                modules =
-                    createObj [
-                        "toolbar" ==>
-                            createObj [
-                                "container" ==> (p.toolbar |> Option.defaultValue Toolbar.all |> Toolbar.toJsObj)
-                                match handlers with
-                                | Some h ->
-                                    "handlers" ==> h
-                                | None -> ()
-                            ]
-
-                        "blotFormatter" ==> {| |}
-                    ]
-            |}
+            conf
             []
 
 type IQuillEditorProperty = interface end
@@ -211,6 +222,7 @@ type editor =
     static member inline theme (theme:Theme) : IQuillEditorProperty = unbox ("theme", theme)
     static member inline placeholder (text:string) : IQuillEditorProperty = unbox ("placeholder", text)
     static member inline defaultValue (text:string) : IQuillEditorProperty = unbox ("defaultValue", text)
+    static member inline value (text:string) : IQuillEditorProperty = unbox ("value", text)
     static member inline toolbar (toolbar:Toolbar) : IQuillEditorProperty = unbox ("toolbar", toolbar)
     static member inline handlers (handlers:Handler list) : IQuillEditorProperty = unbox ("handlers", handlers)
     static member inline formats (formats:string list) : IQuillEditorProperty = unbox ("formats", formats |> Array.ofList)

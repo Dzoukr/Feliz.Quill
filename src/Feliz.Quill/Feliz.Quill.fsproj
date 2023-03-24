@@ -7,12 +7,13 @@
         <PackageIconUrl></PackageIconUrl>
         <PackageTags>fsharp;fable;quill;feliz;react;html;wysiwyg</PackageTags>
         <Authors>Roman Provazník</Authors>
-        <Version>2.0.0</Version>
+        <Version>2.1.0</Version>
         <TargetFramework>netstandard2.0</TargetFramework>
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
-        <PackageReleaseNotes>Use the latest Feliz</PackageReleaseNotes>
+        <PackageReleaseNotes>Adding value for controlled input</PackageReleaseNotes>
     </PropertyGroup>
     <ItemGroup>
+        <Compile Include="JsInterop.fs" />
         <Compile Include="Editor.fs" />
         <Compile Include="Quill.fs" />
     </ItemGroup>
@@ -21,7 +22,7 @@
     </ItemGroup>
     <PropertyGroup>
         <NpmDependencies>
-            <NpmPackage Name="react-quill" Version="&gt;= 2.0.0-beta.2 &lt; 3.0.0" ResolutionStrategy="Max" />
+            <NpmPackage Name="react-quill" Version="&gt;= 2.0.0 &lt; 3.0.0" ResolutionStrategy="Max" />
             <NpmPackage Name="quill-blot-formatter" Version="&gt;= 1.0.5 &lt; 2.0.0" ResolutionStrategy="Max" />
         </NpmDependencies>
     </PropertyGroup>
