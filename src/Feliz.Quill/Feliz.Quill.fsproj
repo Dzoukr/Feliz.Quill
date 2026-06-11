@@ -7,10 +7,10 @@
         <PackageIconUrl></PackageIconUrl>
         <PackageTags>fsharp;fable;quill;feliz;react;html;wysiwyg</PackageTags>
         <Authors>Roman Provazník</Authors>
-        <Version>2.1.0</Version>
+        <Version>2.2.0</Version>
         <TargetFramework>netstandard2.0</TargetFramework>
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
-        <PackageReleaseNotes>Adding value for controlled input</PackageReleaseNotes>
+        <PackageReleaseNotes>Add binding for the `readOnly` option.</PackageReleaseNotes>
     </PropertyGroup>
     <ItemGroup>
         <Compile Include="JsInterop.fs" />
