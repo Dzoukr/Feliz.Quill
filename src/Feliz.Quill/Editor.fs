@@ -203,6 +203,7 @@ module Editor =
                 p |> Props.get "defaultValue" |> Option.map (fun x -> "defaultValue" ==> x)
                 p |> Props.get "value" |> Option.map (fun x -> "value" ==> x)
                 p |> Props.get "formats" |> Option.map (fun x -> "formats" ==> x)
+                p |> Props.get "readOnly" |> Option.map (fun x -> "readOnly" ==> x)
             ]
             |> List.choose id
             |> (fun l -> l @ ["modules" ==> modules])
@@ -226,3 +227,4 @@ type editor =
     static member inline toolbar (toolbar:Toolbar) : IQuillEditorProperty = unbox ("toolbar", toolbar)
     static member inline handlers (handlers:Handler list) : IQuillEditorProperty = unbox ("handlers", handlers)
     static member inline formats (formats:string list) : IQuillEditorProperty = unbox ("formats", formats |> Array.ofList)
+    static member inline readOnly (readOnly:bool) : IQuillEditorProperty = unbox ("readOnly", readOnly)
